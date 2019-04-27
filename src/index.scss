@@ -1,16 +1,21 @@
 body {
     background: #f3f3f3;
+    color: #0a0a0a;
 }
 .card-wrapper {
     background: #fff;
     margin-bottom: 1rem;
     height: 450px;
     box-shadow: -1px 2px 34px -13px rgba(0, 0, 0, 0.75);
-    
+
     .time {
-        font-size: 0.5rem;
-        font-weight: 800;
+        font-size: 0.6rem;
+        font-weight: 500;
+        line-height: 1.42;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
         padding: 10px 0 0 20px;
+        color: #525a66;
     }
     .card-body {
         margin: 0;
@@ -19,7 +24,8 @@ body {
     
     .card-title {
         letter-spacing: 1px;
-        color: #ffc107;
+        font-family: 'Lato', sans-serif;
+        font-weight: 1000;
     }
     .card-text {
         font-size: 1rem;

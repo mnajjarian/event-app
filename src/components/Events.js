@@ -17,11 +17,9 @@ const Events = (props) => {
     return(
       <Container>
         <Row>
-          
-            {props.events.map(e =>
-              <EventRender key={e.id} event={e} bookmark={AddBookmark} />
-            )}
-        
+          {props.events.map(e =>
+            <EventRender key={e.id} event={e} bookmark={AddBookmark} />
+          )}
           {props.moreEventsLoading ? <Loading text='Wait a moment while we load your app.' /> : null}
           <Button color='warning' block onClick={props.addMoreEvents} >More Events...</Button>
         </Row>

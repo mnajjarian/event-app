@@ -6,25 +6,47 @@ export const fetchEvents = () => (dispatch) => {
   dispatch(eventsLoading(true))
 
   fetch(BaseUrl)
-  .then(response => response.json())
-  .then(events => {
-    setTimeout(() => {
+    .then(response => {
+      if(response.ok) {
+        return response
+      }
+      let error = new Error('Error: ', response.status + ', ' + response.statusText)
+      error.message = response
+      throw error
+    },
+    error => {
+      let errMess = new Error(error.message)
+      throw errMess
+    })
+    .then(response => response.json())
+    .then(events => {
       dispatch(addEvents(events))
-    }, 2000)
-  }) 
+    })
+    .catch(error => dispatch(failedEvents(error.message)))
 }
 
 export const fetchMoreEvents = (meta) => (dispatch) => {
   dispatch(moreEventsLoading(true))
 
   fetch(meta)
-  .then(response => response.json())
-  .then(events => {
-    setTimeout(() => {
+    .then(response => {
+      if(response.ok) {
+        return response
+      }
+      let error = new Error('Error: ' + response.status + ', ' + response.statusText)
+      error.message = response
+      throw error
+    },
+    error => {
+      let errMess = new Error(error.message)
+      throw errMess
+    })
+    .then(response => response.json())
+    .then(events => {
       dispatch(addMoreEvents(events))
-    }, 2000)
-  }) 
-  
+    })
+    .catch(error => dispatch(failedEvents(error.message)))
+
 }
 
 export const addMoreEvents = (events) => ({

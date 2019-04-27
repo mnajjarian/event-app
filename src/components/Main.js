@@ -5,7 +5,7 @@ import { fetchEvents, fetchMoreEvents } from '../redux/actionCreators'
 import Header from './Header'
 import Footer from './Footer'
 import Events from './Events'
-import Event from './Event';
+import Event from './Event'
 
 const mapStateToProps = (state) => {
   return {
@@ -30,19 +30,18 @@ class Main extends React.Component {
   hideBar = () => {
     const { isHide } = this.state.isHide
     window.scrollY > this.prev ?
-    !isHide && this.setState({ isHide: false }) :
-    !isHide && this.setState({ isHide: true })
+      !isHide && this.setState({ isHide: false }) :
+      !isHide && this.setState({ isHide: true })
 
     this.prev = window.scrollY
   }
 
   addMoreEvents = () =>  this.props.events.meta.next ?
-   this.props.fetchMoreEvents(this.props.events.meta.next) : null
+    this.props.fetchMoreEvents(this.props.events.meta.next) : null
 
   componentDidMount() {
-    this.props.fetchEvents() 
+    this.props.fetchEvents()
   }
-
 
     toggleModal = () => {
       this.setState({
@@ -62,7 +61,7 @@ class Main extends React.Component {
               eventsErrMess={this.props.events.errMess}
               bookmark={this.props.events.bookmark}
             />} />
-            <Route exact path='/events/:id' component={({match}) => <Event event={this.props.events.events.filter(e => e.id === match.params.id)[0]} />} />
+            <Route exact path='/events/:id' component={({ match }) => <Event event={this.props.events.events.filter(e => e.id === match.params.id)[0]} />} />
           </Switch>
           <Footer show={this.state.isHide} toggleModal={this.toggleModal} />
         </div>

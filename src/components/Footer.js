@@ -7,11 +7,11 @@ const Footer = props => {
   if(props.show) {
     return null
   }
-return (
-  <div >
-    <Container>
-    <Row  className="text-center mt-3 mb-3">
-    <Col>
+  return (
+    <div >
+      <Container>
+        <Row  className="text-center mt-3 mb-3">
+          <Col>
             <ul>
               <a className="btn btn-social-icon btn-facebook" href="/">
                 <li className="fa fa-facebook fa-lg" />
@@ -26,11 +26,11 @@ return (
                 <li className="fa fa-pinterest fa-lg" />
               </a>
             </ul>
-            </Col>
-          </Row>
-    </Container>
+          </Col>
+        </Row>
+      </Container>
     </div>
-)
+  )
 }
 
 export default Footer
