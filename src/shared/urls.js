@@ -1,3 +1,4 @@
+import eventImg from '../img/event.jpg'
 
 const buildDuration = event => {
   const minutes = Math.floor((+new Date(event.start_time) - +new Date(event.end_time)) / 60 / 1000)
@@ -11,6 +12,10 @@ const buildUrl = (base, query) => Object.keys(query).reduce(
   ),
   base
 )
+export const imgUrl = (e) => e.length < 1 ? eventImg : e.map( e => e.url)[0]
+export const eventUrl = (e) => !e.info_url ? '/' : e.info_url.en ? e.info_url.en : e.info_url.fi
+export const shortDescription = (e) => !e.short_description ? '' : e.short_description.en ? e.short_description.en : e.short_description.fi
+export const eventDate = time => new Intl.DateTimeFormat('en-us', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(time))
 
 export const googleCalendarUrl = event => buildUrl('https://calendar.google.com/calendar/event', {
   action: 'TEMPLATE',

@@ -27,14 +27,6 @@ class Main extends React.Component {
       isHide: false
     }
   }
-  hideBar = () => {
-    const { isHide } = this.state.isHide
-    window.scrollY > this.prev ?
-      !isHide && this.setState({ isHide: false }) :
-      !isHide && this.setState({ isHide: true })
-
-    this.prev = window.scrollY
-  }
 
   addMoreEvents = () =>  this.props.events.meta.next ?
     this.props.fetchMoreEvents(this.props.events.meta.next) : null

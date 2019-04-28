@@ -1,10 +1,10 @@
 import React from 'react'
-import { Container, Row, Button } from 'reactstrap'
+import { Container, Row, Col, Button } from 'reactstrap'
+import Filter from './Filter'
 import EventRender from './EventRender'
 import { Loading } from './Loading'
 
 const Events = (props) => {
-  const AddBookmark = () => props.bookmark
   if(props.eventsLoading) {
     return(
       <Loading />
@@ -17,8 +17,13 @@ const Events = (props) => {
     return(
       <Container>
         <Row>
+          <Col>
+
+          </Col>
+        </Row>
+        <Row>
           {props.events.map(e =>
-            <EventRender key={e.id} event={e} bookmark={AddBookmark} />
+            <EventRender key={e.id} event={e} />
           )}
           {props.moreEventsLoading ? <Loading text='Wait a moment while we load your app.' /> : null}
           <Button color='warning' block onClick={props.addMoreEvents} >More Events...</Button>
