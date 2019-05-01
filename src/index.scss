@@ -2,6 +2,56 @@ body {
     background: #f3f3f3;
     color: #0a0a0a;
 }
+.modal-open {
+    .modal-header {
+        border: none;
+        .modal-title {
+            text-align: center;
+            width: 100%;
+        }
+    }
+    .modal-body {
+        .row {
+            margin: 0 auto 30px;
+            text-align: center;
+
+            .col {
+                display: inline-block;
+                margin: 0 17px;
+                padding: 15px;
+
+            }
+        }
+        .division {
+            float: none;
+            margin: 20px auto;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            .left {
+                left: 0;
+                border-top: 1px solid #DFDFDF;
+                position: absolute;
+                top: 10px;
+                width: 34%;
+            }
+            .right {
+                right: 0;
+                border-top: 1px solid #DFDFDF;
+                position: absolute;
+                top: 10px;
+                width: 34%;
+            }
+        }
+        .btn-social-icon {
+            border-radius: 50%;
+        }
+    }
+    .modal-footer {
+        border: none;
+        justify-content: center;
+    }
+}
 .card-wrapper {
     background: #fff;
     margin-bottom: 1rem;
@@ -89,18 +139,9 @@ h4 > a {
     }
 
 }
-.modal-content {
-    background: rgba(223, 239, 133, 0.1) ;
-    border: none !important;
-
-  }
   .modal-transition {
     transition: all 0.4s ease;
   }
-
-#loadModal .backdrop { 
-    background: red !important;
- }
 
  .splash-screen {
     width: 100%;

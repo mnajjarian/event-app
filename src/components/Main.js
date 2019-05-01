@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchEvents, fetchMoreEvents } from '../redux/actionCreators'
+import { fetchEvents, fetchMoreEvents, loginToAccount, userRegister, userLogout } from '../redux/actionCreators'
 import Header from './Header'
 import Footer from './Footer'
 import Events from './Events'
@@ -9,14 +9,18 @@ import Event from './Event'
 
 const mapStateToProps = (state) => {
   return {
-    events: state.events
+    events: state.events,
+    users: state.users
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchEvents: () => dispatch(fetchEvents()),
-    fetchMoreEvents: (meta) => dispatch(fetchMoreEvents(meta))
+    fetchMoreEvents: (meta) => dispatch(fetchMoreEvents(meta)),
+    loginToAccount: (user) => dispatch(loginToAccount(user)),
+    userRegister: (user) => dispatch(userRegister(user)),
+    userLogout: () => dispatch(userLogout())
   }
 }
 class Main extends React.Component {
@@ -43,7 +47,13 @@ class Main extends React.Component {
     render() {
       return(
         <div>
-          <Header show={true} />
+          <Header
+            show={true}
+            loginToAccount={this.props.loginToAccount}
+            userRegister={this.props.userRegister}
+            success={this.props.users.success}
+            userLogout={this.props.userLogout}
+          />
           <Switch>
             <Route exact path='/' component={() => <Events
               addMoreEvents={this.addMoreEvents}

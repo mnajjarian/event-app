@@ -9,10 +9,19 @@ const Header = (props) => {
   const [navIsOpen, setNavIsOpen] = useState(false)
   const toggleNav = () => setNavIsOpen(!navIsOpen)
 
+  const handleLogin = (user) => {
+    props.loginToAccount(user)
+  }
+
+  const handleRegister = (user) => {
+    props.userRegister(user)
+  }
+
   const toggleLogin = () => setLoginIsOpen(!loginIsOpen)
   if(!props.show) {
     return null
   }
+  const toggleLogout = () => props.userLogout()
   return (
     <div className='header' >
       <Navbar fixed='top' color='white' expand='md'  >
@@ -37,11 +46,14 @@ const Header = (props) => {
                 <NavLink className='nav-link' href='/'>Contact</NavLink>
               </NavItem>
             </Nav>
-            <Button color='white' onClick={toggleLogin} className='ml-auto' ><span className='fa fa-sign-in fa-lg' ></span> Login</Button>
+            {!props.success ?
+              <Button color='white' onClick={toggleLogin} className='ml-auto' ><span className='fa fa-sign-in fa-lg' ></span> Login</Button>
+              : <Button color='white' onClick={toggleLogout}  className='ml-auto' ><span className='fa fa-sign-out fa-lg' ></span> Logout</Button>
+            }
           </Collapse>
         </div>
       </Navbar>
-      <Login toggleLogin={toggleLogin} isOpen={loginIsOpen} />
+      <Login toggleLogin={toggleLogin} isOpen={loginIsOpen} handleLogin={handleLogin} handleRegister={handleRegister} />
     </div>
   )
 }
