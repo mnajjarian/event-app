@@ -11,6 +11,9 @@ const Login = (props) => {
   const submit = (e) => {
     e.preventDefault()
     if(rpassword) {
+      if(rpassword !== password) {
+        return null
+      }
       props.handleRegister({ username: username, password: password })
     }
     else {
@@ -63,6 +66,7 @@ const Login = (props) => {
               value={rpassword}
               onChange={({ target }) => setRpassword(target.value)}
               required={display === '' ? true : false }
+              invalid={rpassword !== password}
             />
           </FormGroup>
           <Button block color='info' >{display === 'none' ? 'Login' : 'Create Account' }</Button>

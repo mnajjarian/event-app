@@ -1,23 +1,24 @@
 import * as ActionTypes from './actionTypes'
 
 export const Users = (state = {
-  token: null,
-  success: false,
-  errMess: null
+  isLoading: false,
+  isAuthenticated: localStorage.getItem('token') ? true : false,
+  user: localStorage.getItem('creds') ? JSON.stringify(localStorage.getItem('creds')) : null,
+  token: localStorage.getItem('token')
 }, action) => {
   switch (action.type) {
+  case ActionTypes.LOGIN_REQUEST:
+    return { ...state, isLoading: true, isAuthenticated: false, user: action.data }
   case ActionTypes.SUCCESS_LOGIN:
-    return { ...state, success: action.data.success, token: action.data.token, errMess: null }
-  case ActionTypes.LOGIN_FAILED:
-    return { ...state, success: false, errMess: action.data.statusText }
+    return { ...state, isLoading: false, isAuthenticated: true, token: action.data }
+  case ActionTypes.REQUEST_REGISTER:
+    return { ...state, isLoading: true, isAuthenticated: false }
   case ActionTypes.REGISTER_SUCCESS:
-    return { ...state, success: action.data.success, token: action.data.token, errMess: null }
-  case ActionTypes.REGISTER_FAILED:
-    return { ...state, success: false, errMess: action.data.statusText }
+    return { ...state, isLoading: false, isAuthenticated: true, token: action.data }
+  case ActionTypes.LOGOUT_REQUEST:
+    return { ...state, isLoading: true, isAuthenticated: true }
   case ActionTypes.LOGOUT_SUCCESS:
-    return { ...state, success: false }
-  case ActionTypes.LOGOUT_FAILED:
-    return { ...state, errMess: action.data }
+    return { ...state, isLoading: false, isAuthenticated: false, token: null, user: null }
   default:
     return state
   }

@@ -1,17 +1,16 @@
 import React from 'react'
 import { Container, Row, Col, Button } from 'reactstrap'
-import Filter from './Filter'
 import EventRender from './EventRender'
 import { Loading } from './Loading'
 
 const Events = (props) => {
-  if(props.eventsLoading) {
+  if(!props.events.length && props.eventsLoading) {
     return(
-      <Loading />
+      <Loading text='Wait a moment...' />
     )
   } else if(props.eventsErrMess) {
     return(
-      <h4>{props.eventsErrMess}</h4>
+      null
     )
   } else
     return(
@@ -25,8 +24,10 @@ const Events = (props) => {
           {props.events.map(e =>
             <EventRender key={e.id} event={e} />
           )}
-          {props.moreEventsLoading ? <Loading text='Wait a moment while we load your app.' /> : null}
-          <Button color='warning' block onClick={props.addMoreEvents} >More Events...</Button>
+          {props.eventsLoading ? <Loading text='Wait a moment while we load more events.' /> : null}
+          {!props.events ? '' :
+            <Button color='warning' block onClick={props.addMoreEvents} >More Events...</Button>
+          }
         </Row>
       </Container>
     )

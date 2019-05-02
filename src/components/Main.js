@@ -1,23 +1,24 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchEvents, fetchMoreEvents, loginToAccount, userRegister, userLogout } from '../redux/actionCreators'
+import { fetchEvents, loginToAccount, userRegister, userLogout } from '../redux/actionCreators'
 import Header from './Header'
 import Footer from './Footer'
 import Events from './Events'
 import Event from './Event'
+import Notification from './Notification'
 
 const mapStateToProps = (state) => {
   return {
     events: state.events,
-    users: state.users
+    users: state.users,
+    messages: state.messages
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchEvents: () => dispatch(fetchEvents()),
-    fetchMoreEvents: (meta) => dispatch(fetchMoreEvents(meta)),
     loginToAccount: (user) => dispatch(loginToAccount(user)),
     userRegister: (user) => dispatch(userRegister(user)),
     userLogout: () => dispatch(userLogout())
@@ -32,8 +33,7 @@ class Main extends React.Component {
     }
   }
 
-  addMoreEvents = () =>  this.props.events.meta.next ?
-    this.props.fetchMoreEvents(this.props.events.meta.next) : null
+  addMoreEvents = () =>  this.props.fetchEvents()
 
   componentDidMount() {
     this.props.fetchEvents()
@@ -51,17 +51,16 @@ class Main extends React.Component {
             show={true}
             loginToAccount={this.props.loginToAccount}
             userRegister={this.props.userRegister}
-            success={this.props.users.success}
+            users={this.props.users}
             userLogout={this.props.userLogout}
           />
+          <Notification errMess={this.props.messages.errMess} />
           <Switch>
             <Route exact path='/' component={() => <Events
               addMoreEvents={this.addMoreEvents}
               events={this.props.events.events}
               eventsLoading={this.props.events.isLoading}
-              moreEventsLoading={this.props.events.isMoreLoading}
-              eventsErrMess={this.props.events.errMess}
-              bookmark={this.props.events.bookmark}
+              eventsErrMess={this.props.messages.errMess}
             />} />
             <Route exact path='/events/:id' component={({ match }) => <Event event={this.props.events.events.filter(e => e.id === match.params.id)[0]} />} />
           </Switch>

@@ -52,6 +52,30 @@ body {
         justify-content: center;
     }
 }
+.notify-wrapper {
+    margin: 50px 0 50px 0;
+    h1 {
+        position: relative;
+        line-height: 1;
+        width: 41%;
+        float: left;
+        margin: 0;
+        min-height: 1px;
+        padding-right: 20px;
+        padding-left: 20px;
+        font-size: 152px;
+        font-weight: 600 !important;
+    }
+    h2 {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 20px;
+        font-size: 77px;
+        color: rgba(0, 0, 0, .3);
+        fill: rgba(0, 0, 0, .3);
+    }
+}
 .card-wrapper {
     background: #fff;
     margin-bottom: 1rem;
@@ -101,6 +125,20 @@ body {
 
 .header {
     margin-bottom: 8rem;
+    #avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+    .popover-nav {
+        margin-right: 20px;
+        margin-left:  auto;
+        display: inline-block;
+
+        span {
+            cursor: pointer;
+        }
+    }
 }
 h4 > a {
     text-decoration: none;
@@ -178,5 +216,13 @@ h4 > a {
 @media only screen and (max-width: 760px) {
     .text-align {
         text-align: center;
+    }
+    .notify-wrapper  {
+        h1 {
+            display: block;
+        }
+        h2 {
+            float: left;
+        }
     }
 }
