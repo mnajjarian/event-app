@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchEvents, loginToAccount, userRegister, userLogout } from '../redux/actionCreators'
+import { fetchEvents, loginToAccount, userRegister, userLogout, uploadImage } from '../redux/actionCreators'
 import Header from './Header'
 import Footer from './Footer'
 import Events from './Events'
@@ -21,7 +21,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchEvents: () => dispatch(fetchEvents()),
     loginToAccount: (user) => dispatch(loginToAccount(user)),
     userRegister: (user) => dispatch(userRegister(user)),
-    userLogout: () => dispatch(userLogout())
+    userLogout: () => dispatch(userLogout()),
+    uploadImage: (imgFile) => dispatch(uploadImage(imgFile))
   }
 }
 class Main extends React.Component {
@@ -46,13 +47,14 @@ class Main extends React.Component {
     }
     render() {
       return(
-        <div>
+        <div className='wrapper' >
           <Header
             show={true}
             loginToAccount={this.props.loginToAccount}
             userRegister={this.props.userRegister}
             users={this.props.users}
             userLogout={this.props.userLogout}
+            uploadImage={this.props.uploadImage}
           />
           <Notification errMess={this.props.messages.errMess} />
           <Switch>

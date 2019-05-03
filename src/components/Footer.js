@@ -10,20 +10,20 @@ const Footer = props => {
   return (
     <div >
       <Container>
-        <Row  className="text-center mt-3 mb-3">
+        <Row  className=" mt-3 mb-3">
           <Col>
             <ul>
-              <a className="btn btn-social-icon btn-facebook" href="/">
+              <a className="btn btn-social-icon btn-facebook" href="https://www.facebook.com/">
                 <li className="fa fa-facebook fa-lg" />
               </a>
-              <a className="btn btn-social-icon btn-twitter" href="/">
+              <a className="btn btn-social-icon btn-twitter" href="https://twitter.com/">
                 <li className="fa fa-twitter fa-lg" />
               </a>
-              <a className="btn btn-social-icon btn-instagram" href="/">
-                <li className="fa fa-instagram fa-lg" />
+              <a className="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/mahdi-n-90aaa395/">
+                <li className="fa fa-linkedin fa-lg" />
               </a>
-              <a className="btn btn-social-icon btn-pinterest" href="/">
-                <li className="fa fa-pinterest fa-lg" />
+              <a className="btn btn-social-icon btn-github" href="https://github.com/mnajjarian/event-app-frontend">
+                <li className="fa fa-github fa-lg" />
               </a>
             </ul>
           </Col>

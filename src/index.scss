@@ -2,6 +2,16 @@ body {
     background: #f3f3f3;
     color: #0a0a0a;
 }
+
+.wrapper {
+    height: 100vh;
+    overflow-y: scroll;
+}
+.popover-inner {
+    a {
+        background: transparent;
+    }
+}
 .modal-open {
     .modal-header {
         border: none;

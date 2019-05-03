@@ -20,7 +20,7 @@ const Events = (props) => {
 
           </Col>
         </Row>
-        <Row>
+        <Row >
           {props.events.map(e =>
             <EventRender key={e.id} event={e} />
           )}

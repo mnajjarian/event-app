@@ -2,6 +2,34 @@ import * as ActionTypes from './actionTypes'
 
 const baseUrl = 'api/events'
 
+export const uploadImage = (imgFile) => (dispatch) => {
+  const formData = new FormData()
+  formData.append('title', 'avatar')
+  formData.append('myFile', imgFile)
+  fetch('/imageUpload', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => {
+      if(response.ok) {
+        return response
+      }
+      let error = new Error(response.status + ', ' + response.statusText)
+      error.response = response
+      throw error
+    },
+    err => {
+      throw err
+    })
+    .then(response => console.log(response))
+    .catch(error => console.log(error.message))
+}
+
+export const updateImage = (data) => ({
+  type: ActionTypes.UPDATE_IMAGE,
+  data: data
+})
+
 export const loginToAccount = (creds) => (dispatch) => {
   dispatch(loginRequest(creds))
 
