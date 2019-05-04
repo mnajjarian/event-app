@@ -1,8 +1,15 @@
 body {
     background: #f3f3f3;
     color: #0a0a0a;
+    overflow-x: hidden;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
-
+.navbar-brand {
+    font-family: fantasy;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
 .wrapper {
     height: 100vh;
     overflow-y: scroll;
@@ -64,6 +71,7 @@ body {
 }
 .notify-wrapper {
     margin: 50px 0 50px 0;
+    height: 80vh;
     h1 {
         position: relative;
         line-height: 1;
@@ -135,6 +143,9 @@ body {
 
 .header {
     margin-bottom: 8rem;
+    .header-nav {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
     #avatar {
         width: 30px;
         height: 30px;
@@ -157,15 +168,6 @@ h4 > a {
 .row-content {
     padding: 50px 0 50px 0;
     margin: 0 auto;
-}
-.footer {
-    margin: 0px auto;
-    padding: 20px 0px 0px 0px;
-    color: white;
-    background: rgb(1, 65, 150)
-}
-.header-nav {
-    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .btn {
@@ -207,6 +209,15 @@ h4 > a {
     animation: ease-in-out infinite alternate;
     animation-name: run;
     animation-duration: 1.2s;
+  }
+  .footer-wrapper {
+      padding: 50px 0 50px 0;
+      background: rgba(0, 0, 0, 0.2);
+      margin: 0px auto;
+
+      h5 {
+          color: rgba(0, 0, 0, .7);
+      }
   }
   
   @keyframes run {

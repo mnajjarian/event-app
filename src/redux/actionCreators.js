@@ -2,7 +2,7 @@ import * as ActionTypes from './actionTypes'
 
 const baseUrl = 'api/events'
 
-export const uploadImage = (imgFile) => (dispatch) => {
+export const uploadImage = (imgFile) => () => {
   const formData = new FormData()
   formData.append('title', 'avatar')
   formData.append('myFile', imgFile)
@@ -64,9 +64,6 @@ export const loginToAccount = (creds) => (dispatch) => {
     })
     .catch(err => {
       dispatch(notifyMessages(err.message))
-      setTimeout(() => {
-        dispatch(clearErrMess())
-      },5000)
     })
 }
 

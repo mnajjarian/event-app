@@ -29,12 +29,11 @@ class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      modalIsOpen: true,
-      isHide: false
+      modalIsOpen: true
     }
   }
 
-  addMoreEvents = () =>  this.props.fetchEvents()
+  addMoreEvents = () => this.props.fetchEvents()
 
   componentDidMount() {
     this.props.fetchEvents()
@@ -66,7 +65,7 @@ class Main extends React.Component {
             />} />
             <Route exact path='/events/:id' component={({ match }) => <Event event={this.props.events.events.filter(e => e.id === match.params.id)[0]} />} />
           </Switch>
-          <Footer show={this.state.isHide} toggleModal={this.toggleModal} />
+          <Footer toggleModal={this.toggleModal} />
         </div>
       )
     }

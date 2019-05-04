@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Col, Container, Row
+  Col, Container, Row, InputGroup, Input, InputGroupAddon, Button, NavbarBrand
 } from 'reactstrap'
 
 const Footer = props => {
@@ -8,24 +8,20 @@ const Footer = props => {
     return null
   }
   return (
-    <div >
-      <Container>
-        <Row  className=" mt-3 mb-3">
-          <Col>
-            <ul>
-              <a className="btn btn-social-icon btn-facebook" href="https://www.facebook.com/">
-                <li className="fa fa-facebook fa-lg" />
-              </a>
-              <a className="btn btn-social-icon btn-twitter" href="https://twitter.com/">
-                <li className="fa fa-twitter fa-lg" />
-              </a>
-              <a className="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/mahdi-n-90aaa395/">
-                <li className="fa fa-linkedin fa-lg" />
-              </a>
-              <a className="btn btn-social-icon btn-github" href="https://github.com/mnajjarian/event-app-frontend">
-                <li className="fa fa-github fa-lg" />
-              </a>
-            </ul>
+    <div className='footer-wrapper ' >
+      <Container >
+        <Row  className="offset-1 mt-3 mb-3 justify-content-center">
+          <Col   md={5} >
+            <NavbarBrand href='/' ><span className='fas fa-archway fa-lg' ></span> heleventcity</NavbarBrand>
+          </Col>
+          <Col md={6} >
+            <h5>Get the weekly newsletter, packed full of our latest Events, delivered straight to your inbox.</h5>
+            <InputGroup>
+              <Input placeholder='Your Email Address' />
+              <InputGroupAddon addonType='prepend' >
+                <Button color='primary' >Join Newsletter</Button>
+              </InputGroupAddon>
+            </InputGroup>
           </Col>
         </Row>
       </Container>
