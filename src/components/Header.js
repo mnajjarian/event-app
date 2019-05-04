@@ -22,7 +22,7 @@ const Header = (props) => {
   return (
     <div className='header' >
       <Navbar fixed='top' color='white' expand='md'  >
-        <NavbarBrand href='/' ><span className='fas fa-archway fa-lg' ></span> heleventcity</NavbarBrand>
+        <NavbarBrand href='/' ><span className='fas fa-archway fa-lg' ></span> eventincity</NavbarBrand>
         <Nav className='ml-auto' >
           <NavItem>
             <NavLink href='mailto:mnajarian@gmail.com' >
