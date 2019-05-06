@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Popover, Button, Modal, ModalBody, Form, FormGroup, Input, InputGroup, Label, ModalHeader } from 'reactstrap'
-const baseUrl = 'http://localhost:3001/images/'
+const baseUrl = 'https://helsinki-events.herokuapp.com/images/'
 
 const PopoverNav = (props) => {
   const [modalIsOpen, setModalOpen] = useState(false)
@@ -10,12 +10,14 @@ const PopoverNav = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     props.uploadImage(imgFile)
+    toggle()
+    setTooltipOpen(false)
   }
 
   const toggle = () => setModalOpen(!modalIsOpen)
   return(
     <div className='popover-nav' >
-      <img id='avatar' src={`${baseUrl}${props.user.avatarPath}`} alt='avatar' />
+      <img id='avatar' src={`${baseUrl}${props.user.avatar}`} alt='avatar' />
       <span id='popoverNav' > {localStorage.getItem('user')}</span>
 
       <Popover placement='bottom' isOpen={tooltipOpen} toggle={() => setTooltipOpen(!tooltipOpen)} target='popoverNav' >
@@ -23,7 +25,7 @@ const PopoverNav = (props) => {
         <Button  color='white' onClick={props.userLogout} ><span className='fa fa-sign-out fa-lg' ></span> Logout</Button>
       </Popover>
       <Modal isOpen={modalIsOpen} toggle={toggle} >
-        <ModalBody>
+        <ModalBody >
           <ModalHeader toggle={toggle} ></ModalHeader>
           <Form onSubmit={handleSubmit} encType="multipart/form-data">
             <InputGroup>

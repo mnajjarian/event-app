@@ -24,14 +24,18 @@ export const uploadImage = (imgFile) => (dispatch) => {
       throw err
     })
     .then(response => response.json())
-    .then(response => dispatch(updateImage(response.originalname)))
+    .then(response => {
+      if(response) {
+        localStorage.setItem('avatar', response.originalname)
+      } else {
+        let error = new Error('Error ' + response.status )
+        error.response = response
+        throw error
+      }
+    })
     .catch(error => console.log(error.message))
 }
 
-export const updateImage = (data) => ({
-  type: ActionTypes.UPDATE_AVATAR,
-  data: data
-})
 
 export const loginToAccount = (creds) => (dispatch) => {
   dispatch(loginRequest(creds))
