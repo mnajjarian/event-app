@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Popover, Button, Modal, ModalBody, Form, FormGroup, Input, InputGroup, Label, ModalHeader } from 'reactstrap'
-import avatar from '../img/avatar.png'
+const baseUrl = 'http://localhost:3001/images/'
 
 const PopoverNav = (props) => {
   const [modalIsOpen, setModalOpen] = useState(false)
@@ -13,10 +13,9 @@ const PopoverNav = (props) => {
   }
 
   const toggle = () => setModalOpen(!modalIsOpen)
-
   return(
     <div className='popover-nav' >
-      <img id='avatar' src={avatar} alt='avatar' />
+      <img id='avatar' src={`${baseUrl}${props.user.avatarPath}`} alt='avatar' />
       <span id='popoverNav' > {localStorage.getItem('user')}</span>
 
       <Popover placement='bottom' isOpen={tooltipOpen} toggle={() => setTooltipOpen(!tooltipOpen)} target='popoverNav' >

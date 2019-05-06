@@ -17,4 +17,4 @@ export const LOGOUT_FAILED = 'LOGOUT_FAILED'
 export const NOTIFY_MESS = 'NOTIFY_MESS'
 export const CLEAR_MESS = 'CLEAR_MESS'
 
-export const UPDATE_IMAGE = 'UPDATE_IMAGE'
+export const UPDATE_AVATAR = 'UPDATE_AVATAR'

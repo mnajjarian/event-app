@@ -2,12 +2,14 @@ import * as ActionTypes from './actionTypes'
 
 const baseUrl = 'api/events'
 
-export const uploadImage = (imgFile) => () => {
+export const uploadImage = (imgFile) => (dispatch) => {
+  const bearer = 'Bearer ' + localStorage.getItem('token')
   const formData = new FormData()
   formData.append('title', 'avatar')
   formData.append('myFile', imgFile)
   fetch('/imageUpload', {
     method: 'POST',
+    headers: { 'Authorization': bearer },
     body: formData
   })
     .then(response => {
@@ -21,19 +23,20 @@ export const uploadImage = (imgFile) => () => {
     err => {
       throw err
     })
-    .then(response => console.log(response))
+    .then(response => response.json())
+    .then(response => dispatch(updateImage(response.originalname)))
     .catch(error => console.log(error.message))
 }
 
 export const updateImage = (data) => ({
-  type: ActionTypes.UPDATE_IMAGE,
+  type: ActionTypes.UPDATE_AVATAR,
   data: data
 })
 
 export const loginToAccount = (creds) => (dispatch) => {
   dispatch(loginRequest(creds))
 
-  fetch('/login', {
+  fetch('users/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(creds)
@@ -106,7 +109,7 @@ export const logoutSuccess = () => ({
 
 export const userRegister = (creds) => (dispatch) => {
   dispatch(requestRegister())
-  fetch('/signup', {
+  fetch('users/signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'same-origin',

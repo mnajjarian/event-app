@@ -42,7 +42,7 @@ const Header = (props) => {
           {!localStorage.getItem('token') ?
             <Button color='white' onClick={toggleLogin} className='ml-auto' ><span className='fa fa-sign-in fa-lg' ></span> Login</Button>
             :
-            <PopoverNav userLogout={props.userLogout} uploadImage={props.uploadImage} />
+            <PopoverNav userLogout={props.userLogout} uploadImage={props.uploadImage} user={props.users} />
           }
         </Nav>
       </Navbar>

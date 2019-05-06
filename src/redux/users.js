@@ -4,7 +4,8 @@ export const Users = (state = {
   isLoading: false,
   isAuthenticated: localStorage.getItem('token') ? true : false,
   user: localStorage.getItem('creds') ? JSON.stringify(localStorage.getItem('creds')) : null,
-  token: localStorage.getItem('token')
+  token: localStorage.getItem('token'),
+  avatarPath: 'default-avatar.png'
 }, action) => {
   switch (action.type) {
   case ActionTypes.LOGIN_REQUEST:
@@ -19,6 +20,8 @@ export const Users = (state = {
     return { ...state, isLoading: true, isAuthenticated: true }
   case ActionTypes.LOGOUT_SUCCESS:
     return { ...state, isLoading: false, isAuthenticated: false, token: null, user: null }
+  case ActionTypes.UPDATE_AVATAR:
+    return { ...state, avatarPath: action.data }
   default:
     return state
   }
