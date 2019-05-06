@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The back-end side is here https://github.com/mnajjarian/event-app-backend
 
 ## Available Scripts
 
