@@ -5,13 +5,14 @@ export const Users = (state = {
   isAuthenticated: localStorage.getItem('token') ? true : false,
   user: localStorage.getItem('creds') ? JSON.stringify(localStorage.getItem('creds')) : null,
   token: localStorage.getItem('token'),
-  avatar: localStorage.getItem('avatar') ? localStorage.getItem('avatar') : 'default-avatar.png'
+  avatar: localStorage.getItem('avatar') ? localStorage.getItem('avatar') : 'default-avatar.png',
+  photo: null
 }, action) => {
   switch (action.type) {
   case ActionTypes.LOGIN_REQUEST:
     return { ...state, isLoading: true, isAuthenticated: false, user: action.data }
   case ActionTypes.SUCCESS_LOGIN:
-    return { ...state, isLoading: false, isAuthenticated: true, token: action.data, avatar: action.data.avatar }
+    return { ...state, isLoading: false, isAuthenticated: true, token: action.data, avatar: action.data.avatar, photo: action.data.photo ? action.data.photo : null }
   case ActionTypes.REQUEST_REGISTER:
     return { ...state, isLoading: true, isAuthenticated: false }
   case ActionTypes.REGISTER_SUCCESS:
@@ -19,7 +20,7 @@ export const Users = (state = {
   case ActionTypes.LOGOUT_REQUEST:
     return { ...state, isLoading: true, isAuthenticated: true }
   case ActionTypes.LOGOUT_SUCCESS:
-    return { ...state, isLoading: false, isAuthenticated: false, token: null, user: null }
+    return { ...state, isLoading: false, isAuthenticated: false, token: null, user: null, avatar: null }
   default:
     return state
   }

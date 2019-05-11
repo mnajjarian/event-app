@@ -46,7 +46,9 @@ const Header = (props) => {
           }
         </Nav>
       </Navbar>
-      <Login toggleLogin={toggleLogin} isOpen={loginIsOpen} handleLogin={handleLogin} handleRegister={handleRegister} />
+      <Login toggleLogin={toggleLogin} isOpen={loginIsOpen} handleLogin={handleLogin}
+        handleRegister={handleRegister} loginWithFacebook={props.loginWithFacebook}
+      />
     </div>
   )
 }

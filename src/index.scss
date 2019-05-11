@@ -100,6 +100,13 @@ body {
     height: 450px;
     box-shadow: -1px 2px 34px -13px rgba(0, 0, 0, 0.75);
 
+    .btn-group {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
     .time {
         font-size: 0.6rem;
         font-weight: 500;

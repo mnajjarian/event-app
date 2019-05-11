@@ -25,7 +25,7 @@ const Event = ({ event }) => {
                 <EventContent event={event} />
               </TabContent>
             </CardBody>
-            <a role='button' className='btn btn-outline-warning' target='_blank' rel='noopener noreferrer' href={eventUrl(event)}  disabled={event.info_url === null} >Get The Ticket</a>
+            <a role='button' className='btn btn-outline-warning' target='_blank' rel='noopener noreferrer' href={eventUrl(event)}  disabled={event.info_url === null} >Go To The Ticket</a>
           </Card>
         </Col>
       </Row>

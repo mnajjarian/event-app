@@ -10,8 +10,8 @@ const Events = (props) => {
     )
   } else
     return(
-      <Container>
-        <Row >
+      <Container >
+        <Row>
           {props.events.map(e =>
             <EventRender key={e.id} event={e}/>
           )}

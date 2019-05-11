@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Row, Col, Modal, ModalBody, ModalHeader, ModalFooter, Form, FormGroup, Input, Button } from 'reactstrap'
+import FBLogin from './FBLogin'
 
 const Login = (props) => {
   const[username, setUsername] = useState('')
@@ -76,15 +77,8 @@ const Login = (props) => {
           <span>Or</span>
           <div className='right'></div>
           <Row>
-            <Col>
-              <a href='/' className="btn btn-block btn-social btn-facebook">
-                <span className="fa fa-facebook fa-fw"></span>GitHub
-              </a>
-            </Col>
-            <Col>
-              <a href='/' className="btn btn-block btn-social btn-twitter">
-                <span className="fa fa-twitter fa-fw"></span>Facebook
-              </a>
+            <Col >
+              <FBLogin toggleLogin={props.toggleLogin} loginWithFacebook={props.loginWithFacebook} />
             </Col>
           </Row>
         </div>

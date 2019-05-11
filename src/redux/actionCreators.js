@@ -2,6 +2,38 @@ import * as ActionTypes from './actionTypes'
 
 const baseUrl = 'api/events'
 
+export const loginWithFacebook = (token) => (dispatch) => {
+  const bearer = 'Bearer ' + token
+  fetch('/users/facebook/token', {
+    method: 'GET',
+    headers: { 'Authorization': bearer }
+  })
+    .then(response => {
+      if(response.ok) {
+        return response
+      }
+      let error = new Error(response.status + ', ' + response.statusText)
+      error.response = response
+      throw error
+    },
+    err => {
+      throw err
+    })
+    .then(response => response.json())
+    .then(response => {
+      if(response.success) {
+        localStorage.setItem('token', response.token)
+        localStorage.setItem('user', response.user)
+        dispatch(loginSuccess(response))
+      }
+      else {
+        let error = new Error('Error ' + response.status )
+        error.response = response
+        throw error
+      }
+    })
+    .catch(err => dispatch(loginFailed(err.message)))
+}
 export const uploadImage = (imgFile) => (dispatch) => {
   const bearer = 'Bearer ' + localStorage.getItem('token')
   const formData = new FormData()
@@ -33,7 +65,7 @@ export const uploadImage = (imgFile) => (dispatch) => {
         throw error
       }
     })
-    .catch(error => console.log(error.message))
+    .catch(error => dispatch(notifyMessages(error.message)))
 }
 
 

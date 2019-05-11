@@ -12,7 +12,7 @@ const EventRender = ({ event }) => {
 
 
   return(
-    <Col md={4}  >
+    <Col md={4}>
       <Card className='card-wrapper' >
         <Link to={`/events/${event.id}`} href={eventUrl(event)} >
           <CardImg className='img-thumbnail' src={imgUrl(event.images)} />
