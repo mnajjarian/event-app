@@ -7,7 +7,6 @@ import EventContent from './EventContent'
 
 const Event = ({ event }) => {
   const[activaTab, setActiveTab] = useState('fi')
-  if(!event) return <div></div>
 
   const toggle = (tab) => activaTab !== tab ? setActiveTab(tab) : null
 

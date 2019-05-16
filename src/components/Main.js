@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchEvents, loginToAccount, userRegister, userLogout, uploadImage, loginWithFacebook } from '../redux/actionCreators'
 import Header from './Header'
 import Footer from './Footer'
-import Events from './Events'
-import Event from './Event'
 import Notification from './Notification'
+import { Loading } from './Loading'
+
+const Event = React.lazy(() => import('./Event'))
+const Events = React.lazy(() => import('./Events'))
 
 const mapStateToProps = (state) => {
   return {
@@ -49,6 +51,7 @@ class Main extends React.Component {
     render() {
       return(
         <div className='wrapper' >
+
           <Header
             show={true}
             loginToAccount={this.props.loginToAccount}
@@ -59,15 +62,17 @@ class Main extends React.Component {
             loginWithFacebook={this.props.loginWithFacebook}
           />
           <Notification errMess={this.props.messages.errMess} />
-          <Switch>
-            <Route exact path='/' component={() => <Events
-              addMoreEvents={this.addMoreEvents}
-              events={this.props.events.events}
-              eventsLoading={this.props.events.isLoading}
-              eventsErrMess={this.props.messages.errMess}
-            />} />
-            <Route exact path='/events/:id' component={({ match }) => <Event event={this.props.events.events.filter(e => e.id === match.params.id)[0]} />} />
-          </Switch>
+          <Suspense fallback={<Loading />} >
+            <Switch>
+              <Route exact path='/' component={() => <Events
+                addMoreEvents={this.addMoreEvents}
+                events={this.props.events.events}
+                eventsLoading={this.props.events.isLoading}
+                eventsErrMess={this.props.messages.errMess}
+              />} />
+              <Route exact path='/events/:id' component={({ match }) => <Event event={this.props.events.events.filter(e => e.id === match.params.id)[0]} />} />
+            </Switch>
+          </Suspense>
           <Footer toggleModal={this.toggleModal} />
         </div>
       )

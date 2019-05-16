@@ -15,7 +15,9 @@ const App = () => {
   return(
     <Provider store={store} >
       <BrowserRouter>
-        <Main />
+        <React.StrictMode>
+          <Main />
+        </React.StrictMode>
       </BrowserRouter>
     </Provider>
   )
